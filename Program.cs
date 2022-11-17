@@ -1,5 +1,4 @@
-﻿Console.Clear();
-List<string> StartingTasks = new List<string>();
+﻿List<string> StartingTasks = new List<string>();
 List<string> CompleteTasks = new List<string>();
 List<string> TasksToday = new List<string>();
 
