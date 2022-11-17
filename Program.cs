@@ -1,15 +1,13 @@
 ﻿List<string> StartingTasks = new List<string>();
 List<string> CompleteTasks = new List<string>();
 List<string> TasksToday = new List<string>();
-
-string[] ToDoTasks = File.ReadAllLines("ToDoTasks.csv");
 string[] CompTasks = File.ReadAllLines("CompletedTasks.csv");
+string[] ToDoTasks = File.ReadAllLines("ToDoTasks.csv");
 string[] TodayTasks = File.ReadAllLines("Stats.csv");
 Random r = new Random();
 int random = r.Next(0, 9);
 string[] Greetings = File.ReadAllLines("Greetings.csv");
-
-int TasksCreated2Day = 0;
+int TasksCreatedToDay = 0;
 string greeting = Greetings[random];
 Console.WriteLine(greeting);
 DateTime StartTime = new DateTime();
@@ -33,13 +31,13 @@ foreach (string items in TodayTasks)
 
 void ToDoItems()
 {
-    Console.WriteLine("Here are your incomplete items");
+    Console.WriteLine("The following are, incomplete tasks");
     for (int x = 0; x < StartingTasks.Count; x++)
     {
         Console.WriteLine($"   {x + 1}: {StartingTasks[x]}");
     }
     if (StartingTasks.Count == 0)
-        Console.WriteLine("You currently have no items on your list");
+        Console.WriteLine("No tasks are available");
     Console.ReadLine();
     TaskMenu();
 }
@@ -76,7 +74,7 @@ void RemoveTasks()
         int NumComp = int.Parse(Console.ReadLine()) - 1;
         if (NumComp > StartingTasks.Count)
         {
-            Console.WriteLine("Invalid Input");
+            Console.WriteLine("Try again, eneter a valid number.");
             Console.ReadLine();
             TaskMenu();
         }
@@ -202,7 +200,7 @@ void TaskMenu()
          Console.Write("Come back soon!");
         File.WriteAllLines("ToDoTasks.csv", StartingTasks);
         File.WriteAllLines("CompletedTasks.csv", CompleteTasks);
-        TasksToday.Add($"{TasksCreated2Day} Tasks Created on {Today}");
+        TasksToday.Add($"{TasksCreatedToDay} Tasks Created on {Today}");
         File.WriteAllLines("Stats.csv", TasksToday);
         System.Environment.Exit(0);
        
